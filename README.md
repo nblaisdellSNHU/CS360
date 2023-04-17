@@ -1,1 +1,22 @@
 # CS360
+
+The app that I created was a simple "Inventory" app, which would allow users to keep track of an inventory of items from their mobile device. The app handled multiple users and logins, and stored the user and inventory data in a SQLite database within the app.
+
+There are three main screens that the user will interact with when using this Inventory app: The Login screen, the Inventory List screen, and the "New/Update" Inventory Item screen.
+* Login
+  * The login screen has a "Username" and "Password" field
+  * Any new usernames not currently added to the database will be created automatically with the password entered
+* Inventory List
+  * This is a grid of inventory items, each of which contains the name of the item, a way to edit/delete the item, and a counter for the current count of that item in the user's inventory, which can be incremented/decremented with the plus/minus buttons, respectively.
+  * There is also a Floating Action Button which allows for creating new inventory items
+* New/Update Item
+  * This screen allows the user to create a new item, or update an existing one, by entering a name and count for a new item
+  * If the user is editing an existing item, that item's details will be pre-populated on this screen
+  
+The approach I took to creating this app was to design the UI completely before doing any coding. By planning out each screen, and all of the elements required for each, it showed me exactly what pieces would need to be coded eventually, without missing anything or running into design issues during development. After the design was finalized, I then was able to code the entire project, again focusing first on the UI aspect, and building out the UI and each of the different screens. This included creating the various activities, the different layout files for each Activity, and the code required to make each screen work and be able to navigate to one another, without thinking anything about the final functionality or any of the real data required. Then, finally, once the UI is fully complete, I was able to focus on the data aspect, and the actual functionality of the app itself, which was very simple to do and focus on with all of the UI elements complete. I will continue to follow these steps in the future for all of my projects, as it makes the entire process much more clear.
+
+One of the main ways I tested my code was to make sure that I was testing out each part of my code as I developed it, making sure not to write too much code between so that I know each part is working as I expect as I continue forward. Once things were more developed, another way I tested was manually trying various different use cases and orders of adding/removing/editing items, to make sure that the UI elements and the data in the database were always in sync. Without these steps, there may have been bugs in the app that may have gone unnoticed until too late, or subtle ones that only occur in rare circumstances, but still need to be handled correctly. Still, I could have gone further by including a testing library and writing unit and integration tests for my application, further ensuring the correctness of the app.
+
+One of the places I had to really focus was implementing the actual functionality for each of the grid items on my Inventory List screen. Each item would have a button which would allow for Editing, Deleting, Incrementing the Count, or Decrementing the Count. By default, however, we're usually only given a single onClick method, which is handled for the *entire* grid item, not the individual items within each grid item. Not only that, but even if the onClick method could work, I would need 4 separate onClick methods, and each one would have to be associated with a different function. As a result, I needed to understand how interfaces worked at a better level, and ended up needing to pass that interface to my RecyclerView adapter, allowing me to register the 4 separate functions to the different elements in the individual grid items.
+
+I feel I was able to demonstrate my skills fairly well in the Inventory Item screen, in the way I was able to develop the InventoryAdapter interface, described above. The way I designed that part of the code, it would be fairly simple to add a new function to the interface, and be able to register that new function with a new item added to each inventory item in the grid.
